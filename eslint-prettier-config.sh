@@ -102,9 +102,9 @@ echo
 $pkg_cmd -D eslint prettier
 
 echo
-echo -e "2/5 ${YELLOW}Conforming to Airbnb's JavaScript Style Guide... ${NC}"
+echo -e "2/5 ${YELLOW}Conforming to Airbnb's JavaScript Style Guide and SonarJS Rules... ${NC}"
 echo
-$pkg_cmd -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react babel-eslint
+$pkg_cmd -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react es-plugin-react-hooks babel-eslint eslint-plugin-sonarjs
 
 echo
 echo -e "3/5 ${LCYAN}Making ESlint and Prettier play nice with each other... ${NC}"
@@ -121,10 +121,23 @@ else
   > ".eslintrc${config_extension}" # truncates existing file (or creates empty)
 
   echo ${config_opening}'
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings: {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "airbnb",
     "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier/react",
+    "plugin:sonarjs/recommended"
   ],
   "env": {
     "browser": true,
