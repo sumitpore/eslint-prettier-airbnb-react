@@ -149,7 +149,6 @@ else
     "airbnb",
     "airbnb/hooks",
     "plugin:prettier/recommended",
-    "prettier/react",
     "plugin:sonarjs/recommended"
   ],
   "env": {
