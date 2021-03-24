@@ -18,8 +18,8 @@ echo
 echo "Which package manager are you using?"
 select package_command_choices in "Yarn" "npm" "Cancel"; do
   case $package_command_choices in
-    Yarn ) pkg_cmd='yarn add'; break;;
-    npm ) pkg_cmd='npm install'; break;;
+    Yarn ) pkg_installer='yarn'; break;;
+    npm ) pkg_installer='npm'; break;;
     Cancel ) exit;;
   esac
 done
@@ -90,6 +90,16 @@ if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o 
   echo
 fi
 
+if [ "$pkg_installer" == "yarn" ]; then
+    pkg_cmd="yarn add"
+    pkg_global_cmd="yarn global add"
+else
+    pkg_cmd="npm install"
+    pkg_global_cmd="npm install -g"
+fi
+
+$pkg_global_cmd install-peerdeps
+
 # ----------------------
 # Perform Configuration
 # ----------------------
@@ -99,18 +109,18 @@ echo -e "${GREEN}Configuring your development environment... ${NC}"
 echo
 echo -e "1/5 ${LCYAN}ESLint & Prettier Installation... ${NC}"
 echo
-$pkg_cmd -D eslint prettier
+install-peerdeps -D eslint prettier
 
 echo
 echo -e "2/5 ${YELLOW}Conforming to Airbnb's JavaScript Style Guide and SonarJS Rules... ${NC}"
 echo
-$pkg_cmd -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks @babel/eslint-parser eslint-plugin-sonarjs
+install-peerdeps -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-sonarjs
 
 echo
 echo -e "3/5 ${LCYAN}Making ESlint and Prettier play nice with each other... ${NC}"
 echo "See https://github.com/prettier/eslint-config-prettier for more details."
 echo
-$pkg_cmd -D eslint-config-prettier eslint-plugin-prettier
+install-peerdeps -D eslint-config-prettier eslint-plugin-prettier
 
 
 if [ "$skip_eslint_setup" == "true" ]; then
@@ -135,6 +145,7 @@ else
   },
   "extends": [
     "airbnb",
+    "airbnb/hooks",
     "plugin:prettier/recommended",
     "prettier/react",
     "plugin:sonarjs/recommended"
