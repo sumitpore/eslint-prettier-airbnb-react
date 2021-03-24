@@ -111,7 +111,7 @@ install-peerdeps -D eslint prettier
 echo
 echo -e "2/5 ${YELLOW}Conforming to Airbnb's JavaScript Style Guide and SonarJS Rules... ${NC}"
 echo
-install-peerdeps -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-sonarjs
+install-peerdeps -D @babel/eslint-parser eslint-config-airbnb eslint-plugin-sonarjs
 
 echo
 echo -e "3/5 ${LCYAN}Making ESlint and Prettier play nice with each other... ${NC}"
@@ -135,11 +135,13 @@ else
       "jsx": true
     }
   },
+  "parser": "@babel/eslint-parser",
   "settings": {
     "react": {
       "version": "detect"
     }
   },
+  "plugins": ["sonarjs"],
   "extends": [
     "airbnb",
     "airbnb/hooks",
@@ -157,6 +159,7 @@ else
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "indent": [2, "tab"],
     "max-len": [
       "warn",
       {
@@ -185,6 +188,8 @@ else
   echo ${config_opening}'
   "printWidth": '${max_len_val}',
   "singleQuote": true,
+  "useTabs": true,
+  "tabWidth": 2,
   "trailingComma": "'${trailing_comma_pref}'"
 }' >> .prettierrc${config_extension}
 fi

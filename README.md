@@ -42,13 +42,9 @@
 
 1. [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
    - This package provides Airbnb's .eslintrc as an extensible shared config.
-2. [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) (Peer Dependency)
-   - Static AST checker for accessibility rules on JSX elements.
-3. [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) (Peer Dependency)
-   - React specific linting rules for ESLint
-4. [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) (Peer Dependency)
-   - Support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names.
-5. [babel-eslint](https://github.com/babel/babel-eslint)
+2. [eslint-plugin-sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs)
+   - SonarJS rules for ESLint to detect bugs and suspicious patterns in the code.
+3. [@babel/eslint-parser](https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser)
    - A wrapper for Babel's parser used for ESLint.
    - We decided to include this since [Airbnb Style Guide uses Babel](https://github.com/airbnb/javascript#airbnb-javascript-style-guide-).
 
@@ -84,6 +80,7 @@ Once files are created, you may edit to your liking.
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "indent": [2, "tab"],
     "max-len": [
       "warn",
       {
@@ -108,12 +105,16 @@ Once files are created, you may edit to your liking.
 
 ```
 {
-"printWidth": (SET BY USER),
-  "singleQuote": true,
-  "trailingComma": (SET BY USER)
+   "printWidth": (SET BY USER),
+   "singleQuote": true,
+   "useTabs": true,
+   "tabWidth": 2,
+   "trailingComma": (SET BY USER)
 }
 ```
 
 ---
+
+This Repo was forked from https://github.com/paulolramos/eslint-prettier-airbnb-react
 
 This script was inspired by Jeffrey Zhen's [tutorial](https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a).
