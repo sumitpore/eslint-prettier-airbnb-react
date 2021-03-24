@@ -133,6 +133,7 @@ else
   echo ${config_opening}'
   "parserOptions": {
     "ecmaVersion": 2020,
+    "requireConfigFile": false,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
