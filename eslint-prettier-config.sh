@@ -106,18 +106,22 @@ echo -e "${GREEN}Configuring your development environment... ${NC}"
 echo
 echo -e "1/5 ${LCYAN}ESLint & Prettier Installation... ${NC}"
 echo
-install-peerdeps -D eslint prettier
+install-peerdeps -D eslint 
+install-peerdeps -D prettier
 
 echo
 echo -e "2/5 ${YELLOW}Conforming to Airbnb's JavaScript Style Guide and SonarJS Rules... ${NC}"
 echo
-install-peerdeps -D @babel/eslint-parser eslint-config-airbnb eslint-plugin-sonarjs
+install-peerdeps -D @babel/eslint-parser
+install-peerdeps -D eslint-config-airbnb
+install-peerdeps -D eslint-plugin-sonarjs
 
 echo
 echo -e "3/5 ${LCYAN}Making ESlint and Prettier play nice with each other... ${NC}"
 echo "See https://github.com/prettier/eslint-config-prettier for more details."
 echo
-install-peerdeps -D eslint-config-prettier eslint-plugin-prettier
+install-peerdeps -D eslint-config-prettier 
+install-peerdeps -D eslint-plugin-prettier
 
 
 if [ "$skip_eslint_setup" == "true" ]; then
