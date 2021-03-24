@@ -6,15 +6,28 @@
    cd my-app
    ```
 
-2. Run this command inside your app's root directory. Note: this command executes the `eslint-prettier-config.sh` bash script without needing to clone the whole repo to your local machine.
+2. Install `install-peerdeps` package globally
+   - Yarn Users
+   ```bash
+      yarn global add install-peerdeps
+   ```
+
+   - NPM Users
+   ```bash
+      npm install -g install-peerdeps
+   ```
+
+   You may have to prepend `sudo` to the command depending upon your system.
+
+3. Run this command inside your app's root directory. Note: this command executes the `eslint-prettier-config.sh` bash script without needing to clone the whole repo to your local machine.
 
    ```bash
    exec 3<&1;bash <&3 <(curl https://raw.githubusercontent.com/sumitpore/eslint-prettier-airbnb-react/master/eslint-prettier-config.sh 2> /dev/null)
    ```
 
-3. Make selections for your preference of package manager (npm or yarn), file format (.js or .json), max-line size, and trailing commas (none, es5, all).
+4. Make selections for your preference of package manager (npm or yarn), file format (.js or .json), max-line size, and trailing commas (none, es5, all).
 
-4. Look in your project's root directory and notice the two newly added/updated config files:
+5. Look in your project's root directory and notice the two newly added/updated config files:
    - `.eslintrc.js` (or `.eslintrc.json`)
    - `.prettierrc.js` (or `.prettierrc.json`)
 

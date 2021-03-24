@@ -92,13 +92,10 @@ fi
 
 if [ "$pkg_installer" == "yarn" ]; then
     pkg_cmd="yarn add"
-    pkg_global_cmd="yarn global add"
 else
     pkg_cmd="npm install"
-    pkg_global_cmd="npm install -g"
 fi
 
-$pkg_global_cmd install-peerdeps
 
 # ----------------------
 # Perform Configuration
